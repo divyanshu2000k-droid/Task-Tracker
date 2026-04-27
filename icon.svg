@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="#6366f1"/>
+  <rect x="16" y="16" width="480" height="480" rx="85" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="6"/>
+
+  <!-- Calendar body -->
+  <rect x="106" y="156" width="300" height="240" rx="18" fill="rgba(255,255,255,0.15)"/>
+  <rect x="106" y="156" width="300" height="52" rx="18" fill="rgba(255,255,255,0.25)"/>
+  <rect x="106" y="190" width="300" height="18" fill="rgba(255,255,255,0.25)"/>
+
+  <!-- Calendar binding dots -->
+  <circle cx="186" cy="156" r="12" fill="#6366f1"/>
+  <circle cx="186" cy="156" r="8" fill="rgba(255,255,255,0.9)"/>
+  <circle cx="326" cy="156" r="12" fill="#6366f1"/>
+  <circle cx="326" cy="156" r="8" fill="rgba(255,255,255,0.9)"/>
+
+  <!-- Row 1 - checked -->
+  <rect x="130" y="232" width="22" height="22" rx="5" fill="rgba(255,255,255,0.9)"/>
+  <path d="M135 243 L140 250 L150 236" fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="166" y="237" width="110" height="12" rx="4" fill="rgba(255,255,255,0.7)"/>
+
+  <!-- Row 2 - checked -->
+  <rect x="130" y="268" width="22" height="22" rx="5" fill="rgba(255,255,255,0.9)"/>
+  <path d="M135 279 L140 286 L150 272" fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="166" y="273" width="140" height="12" rx="4" fill="rgba(255,255,255,0.7)"/>
+
+  <!-- Row 3 - in progress -->
+  <rect x="130" y="304" width="22" height="22" rx="5" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>
+  <rect x="166" y="309" width="90" height="12" rx="4" fill="rgba(255,255,255,0.5)"/>
+
+  <!-- Row 4 - empty -->
+  <rect x="130" y="340" width="22" height="22" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+  <rect x="166" y="345" width="120" height="12" rx="4" fill="rgba(255,255,255,0.3)"/>
+
+  <!-- Flicker dot -->
+  <circle cx="376" cy="315" r="10" fill="#f87171"/>
+  <circle cx="376" cy="315" r="6" fill="#ef4444"/>
+</svg>
