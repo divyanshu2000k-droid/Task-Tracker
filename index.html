@@ -12,19 +12,15 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f9fa;color:#1a1a1a;font-size:13px}
 .app{max-width:720px;margin:0 auto;padding:12px}
-
-/* Loader */
 .loader{position:fixed;inset:0;background:rgba(255,255,255,.92);z-index:3000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:13px;color:#6b7280}
 .loader.hidden{display:none}
 .spinner{width:32px;height:32px;border:3px solid #e5e7eb;border-top-color:#6366f1;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* Header */
 .hdr{background:#fff;border-radius:12px;padding:14px 16px;margin-bottom:10px;border:0.5px solid #e5e7eb}
 .hdr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .hdr-top h1{font-size:16px;font-weight:500}
 .hdr-right{display:flex;align-items:center;gap:6px}
-.streak{font-size:12px;font-weight:600;padding:3px 9px;border-radius:20px;background:#fef3c7;color:#92400e}
+.streak{font-size:12px;font-weight:600;padding:3px 9px;border-radius:20px;background:#fef3c7;color:#92400e;display:none}
 .streak.hot{background:#fee2e2;color:#991b1b}
 .badges{display:flex;gap:6px}
 .bp{font-size:11px;padding:3px 9px;border-radius:20px;background:#f3f4f6;color:#6b7280}
@@ -41,8 +37,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .dt-leave{background:#fee2e2;color:#991b1b;border-color:#fecaca}
 .dt-working{background:#fef9c3;color:#854d0e;border-color:#fde68a}
 .dt-weekend{background:#f3f4f6;color:#6b7280}
-
-/* Day type popover */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:1999;display:none}
 .overlay.open{display:block}
 .dt-pop{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:12px;border:0.5px solid #d1d5db;box-shadow:0 8px 32px rgba(0,0,0,.15);z-index:2000;padding:16px;min-width:220px;display:none}
@@ -55,14 +49,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .dt-btns{display:flex;gap:8px;margin-top:12px}
 .btn-cancel{flex:1;padding:7px;border-radius:7px;border:0.5px solid #d1d5db;background:#fff;cursor:pointer;font-size:12px;color:#6b7280}
 .btn-confirm{flex:1;padding:7px;border-radius:7px;border:none;background:#6366f1;color:#fff;cursor:pointer;font-size:12px;font-weight:500}
-
-/* Banner */
 .banner{border-radius:8px;padding:8px 14px;margin-bottom:10px;font-size:12px;display:none;align-items:center;gap:8px}
 .banner.past{background:#fef9c3;border:0.5px solid #fde68a;color:#854d0e;display:flex}
 .banner.leave{background:#fee2e2;border:0.5px solid #fecaca;color:#991b1b;display:flex}
 .banner.ww{background:#f0fdf4;border:0.5px solid #bbf7d0;color:#166534;display:flex}
-
-/* Stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}
 .stat{background:#fff;border-radius:8px;padding:10px;border:0.5px solid #e5e7eb;text-align:center}
 .stat .num{font-size:20px;font-weight:500}.stat .lbl{font-size:10px;color:#6b7280;margin-top:2px}
@@ -70,30 +60,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .prog-top{display:flex;justify-content:space-between;font-size:11px;color:#6b7280;margin-bottom:6px}
 .prog-bar{height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden}
 .prog-fill{height:100%;background:linear-gradient(90deg,#6366f1,#10b981);border-radius:3px;transition:width .4s}
-
-/* Collapsible sections */
 .sec{background:#fff;border-radius:12px;border:0.5px solid #e5e7eb;margin-bottom:10px;overflow:visible}
-.sec-hdr{padding:11px 14px;font-weight:500;font-size:13px;border-bottom:0.5px solid #e5e7eb;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;border-radius:12px}
-.sec-hdr:hover{background:#f9fafb}
-.sec-hdr.no-collapse{cursor:default}
-.sec-hdr.no-collapse:hover{background:transparent}
+.sec-hdr{padding:11px 14px;font-weight:500;font-size:13px;border-bottom:0.5px solid #e5e7eb;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.sec-hdr:hover{background:#f9fafb;border-radius:12px 12px 0 0}
+.sec-hdr.nc{cursor:default}.sec-hdr.nc:hover{background:transparent}
 .sec-body{display:none}.sec-body.open{display:block}
 .chev{font-size:11px;color:#6b7280;transition:transform .2s;display:inline-block}
 .chev.open{transform:rotate(90deg)}
-.hdr-btn{margin-left:auto;font-size:10px;padding:3px 9px;border-radius:5px;border:0.5px solid #d1d5db;background:#fff;cursor:pointer;color:#6b7280;font-weight:400}
-
-/* Summary */
+.hdr-btn{margin-left:auto;font-size:10px;padding:3px 9px;border-radius:5px;border:0.5px solid #d1d5db;background:#fff;cursor:pointer;color:#6b7280}
 .stabs{display:flex;gap:4px;margin-left:auto}
 .stab{font-size:10px;padding:3px 9px;border-radius:5px;border:0.5px solid #d1d5db;background:#fff;cursor:pointer;color:#6b7280}
 .stab.active{background:#6366f1;color:#fff;border-color:#6366f1}
-.sum-table{width:100%;border-collapse:collapse;font-size:11px;padding:0 14px 12px;display:block}
+.sum-table{width:100%;border-collapse:collapse;font-size:11px}
 .sum-table th{color:#6b7280;font-weight:500;padding:5px 6px;text-align:left;border-bottom:0.5px solid #e5e7eb}
 .sum-table td{padding:5px 6px;border-bottom:0.5px solid #e5e7eb}
 .sum-table tr:last-child td{border-bottom:none}
+.sum-wrap{padding:0 14px 12px}
 .mini-bar{height:4px;background:#f3f4f6;border-radius:2px;width:50px;display:inline-block;vertical-align:middle;margin-right:4px}
 .mini-fill{height:100%;background:#6366f1;border-radius:2px}
-
-/* Filter */
 .filter-row{padding:8px 12px;border-bottom:0.5px solid #e5e7eb;display:flex;gap:6px;align-items:center;position:relative}
 .srch{flex:1;border:0.5px solid #d1d5db;border-radius:6px;padding:4px 9px;font-size:12px;background:#fff;color:#1a1a1a;outline:none}
 .srch:focus{border-color:#6366f1}
@@ -109,31 +93,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .fopt{font-size:11px;padding:3px 9px;border-radius:10px;border:0.5px solid #d1d5db;background:#fff;cursor:pointer;color:#6b7280}
 .fopt.active{background:#6366f1;color:#fff;border-color:#6366f1}
 .fclear{font-size:10px;color:#6366f1;background:none;border:none;cursor:pointer;margin-top:8px;display:block;padding:2px 0}
-
-/* Add row */
 .add-row{display:flex;gap:6px;padding:8px 12px;border-bottom:0.5px solid #e5e7eb}
 .add-row input{flex:1;border:0.5px solid #d1d5db;border-radius:6px;padding:5px 9px;font-size:12px;background:#fff;color:#1a1a1a;outline:none}
 .add-row input:focus{border-color:#6366f1}
 .add-row select{border:0.5px solid #d1d5db;border-radius:6px;padding:5px 7px;font-size:12px;background:#fff;color:#1a1a1a;outline:none;cursor:pointer}
 .btn-add{background:#6366f1;color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer;font-weight:500}
-
-/* Carry header */
 .carry-hdr{padding:5px 14px 3px;font-size:10px;font-weight:600;color:#dc2626;text-transform:uppercase;letter-spacing:.05em;border-bottom:0.5px dashed #fecaca;background:#fff9f9}
-
-/* Task row */
-.task-row{padding:7px 12px;border-bottom:0.5px solid #f3f4f6;display:flex;align-items:center;gap:6px;position:relative;touch-action:pan-y}
+.task-row{padding:7px 12px;border-bottom:0.5px solid #f3f4f6;display:flex;align-items:center;gap:6px}
 .task-row:last-child{border-bottom:none}
-.task-row.swiping{transition:none}
 .tname{flex:1;font-size:12px;line-height:1.4;color:#1a1a1a}
 .tname.done{text-decoration:line-through;color:#9ca3af}
 .tag-new{background:#ede9fe;color:#7c3aed;font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;margin-left:4px}
-.tag-p0warn{background:#fee2e2;color:#991b1b;font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;margin-left:4px;animation:pulse 1s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.tag-warn{background:#fee2e2;color:#991b1b;font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;margin-left:4px;animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .flicker{width:7px;height:7px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:flk 1.4s ease-in-out infinite}
 .flicker.off{animation:none;opacity:0}
 @keyframes flk{0%,100%{opacity:1}50%{opacity:.15}}
-
-/* Dropdowns */
 .dd{position:relative;display:inline-block}
 .ddm{position:absolute;top:calc(100% + 3px);left:0;background:#fff;border:0.5px solid #d1d5db;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08);z-index:1000;min-width:120px;overflow:hidden;display:none}
 .ddm.open{display:block}
@@ -145,28 +120,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .st-ns{background:#f3f4f6;color:#6b7280}.st-ip{background:#fef3c7;color:#92400e}
 .st-dn{background:#dcfce7;color:#166534}.st-nd{background:#ede9fe;color:#6d28d9}.st-bl{background:#fee2e2;color:#991b1b}
 .icon-btn{background:none;border:none;cursor:pointer;font-size:14px;padding:2px 4px;line-height:1;color:#6b7280}
-.cmt-btn{opacity:.3;position:relative}
+.cmt-btn{opacity:.3}
 .cmt-btn.has-cmt{opacity:1;background:#fef9c3;border-radius:4px;padding:2px 5px}
 .del-btn{opacity:.3;font-size:12px}.del-btn:hover{opacity:1;color:#ef4444}
-
-/* Comment tooltip */
-.cmt-tooltip{position:absolute;bottom:calc(100% + 6px);right:0;background:#1f2937;color:#fff;font-size:11px;padding:6px 10px;border-radius:7px;max-width:220px;white-space:pre-wrap;z-index:1001;display:none;line-height:1.4}
-.cmt-tooltip::after{content:'';position:absolute;top:100%;right:12px;border:5px solid transparent;border-top-color:#1f2937}
-.cmt-btn-wrap{position:relative}
-.cmt-btn-wrap:hover .cmt-tooltip{display:block}
-
-/* Comment area */
+.cmt-wrap{position:relative}
+.cmt-tip{position:absolute;bottom:calc(100% + 6px);right:0;background:#1f2937;color:#fff;font-size:11px;padding:6px 10px;border-radius:7px;max-width:220px;white-space:pre-wrap;z-index:1001;display:none;line-height:1.4;pointer-events:none}
+.cmt-tip::after{content:'';position:absolute;top:100%;right:12px;border:5px solid transparent;border-top-color:#1f2937}
+.cmt-wrap:hover .cmt-tip{display:block}
 .cmt-area{display:none;padding:4px 12px 8px 38px}
 .cmt-area.open{display:block}
 .cmt-area textarea{width:100%;border:0.5px solid #d1d5db;border-radius:6px;padding:5px 8px;font-size:11px;resize:vertical;min-height:38px;font-family:inherit;outline:none;color:#1a1a1a;background:#fff}
 .cmt-area textarea:focus{border-color:#6366f1}
-
-/* Swipe hint */
-.swipe-hint{position:absolute;right:0;top:0;bottom:0;display:flex;align-items:center;padding:0 12px;font-size:10px;font-weight:600;border-radius:0 0 0 0;pointer-events:none;opacity:0;transition:opacity .15s}
-.swipe-hint.next{background:#dcfce7;color:#166534}
-.swipe-hint.prev{background:#fef3c7;color:#92400e}
-
-/* Meetings */
 .meet-row{padding:8px 12px;border-bottom:0.5px solid #f3f4f6;display:flex;align-items:center;gap:8px}
 .meet-row:last-child{border-bottom:none}
 .meet-dot{width:7px;height:7px;border-radius:50%;background:#d1d5db;flex-shrink:0}
@@ -174,19 +138,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .meet-info{flex:1}.meet-name{font-size:12px;font-weight:500}.meet-time{font-size:10px;color:#6b7280}
 .btn-attend{font-size:10px;padding:3px 9px;border-radius:5px;border:0.5px solid #d1d5db;background:#fff;cursor:pointer;color:#6b7280}
 .btn-attend.attended{background:#dcfce7;color:#166534;border-color:#bbf7d0}
-
-/* History tabs */
 .hist-tabs{display:flex;gap:6px;padding:8px 12px;border-bottom:0.5px solid #e5e7eb}
 .htab{font-size:11px;padding:4px 12px;border-radius:6px;border:0.5px solid #d1d5db;background:#fff;cursor:pointer;color:#6b7280;font-weight:500}
 .htab.active{background:#6366f1;color:#fff;border-color:#6366f1}
-
-/* History rows */
 .hist-hdr{padding:7px 12px 2px;font-size:10px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:6px}
 .hist-row{padding:6px 12px;border-bottom:0.5px solid #f3f4f6;display:flex;align-items:center;gap:6px}
 .hist-row:last-child{border-bottom:none}
 .btn-hadd{font-size:10px;padding:2px 8px;border-radius:5px;border:0.5px solid #6366f1;color:#6366f1;background:#fff;cursor:pointer}
-
-/* Bottom */
 .bottom{background:#fff;border-radius:12px;border:0.5px solid #e5e7eb;padding:14px 16px;margin-bottom:16px}
 .btn-insert{background:#10b981;color:#fff;border:none;border-radius:7px;padding:9px 14px;font-size:12px;cursor:pointer;font-weight:500;width:100%;margin-bottom:4px}
 .btn-insert:hover{background:#059669}.btn-insert:disabled{opacity:.6;cursor:not-allowed}
@@ -194,17 +152,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .store-note{font-size:11px;color:#6b7280;margin-bottom:8px;padding:6px 8px;background:#f3f4f6;border-radius:6px}
 .btn-pdf{background:#f3f4f6;color:#1a1a1a;border:0.5px solid #d1d5db;border-radius:7px;padding:8px 14px;font-size:12px;cursor:pointer;font-weight:500;width:100%}
 .btn-pdf:hover{background:#e5e7eb}
-
-/* PDF modal */
 .pdf-modal{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2000;display:none;align-items:center;justify-content:center}
 .pdf-modal.open{display:flex}
 .pdf-box{background:#fff;border-radius:12px;padding:20px;width:320px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
 .pdf-box h3{font-size:14px;font-weight:600;margin-bottom:14px}
 .pdf-box label{font-size:11px;color:#6b7280;display:block;margin-bottom:4px}
 .pdf-box input[type=date]{width:100%;border:0.5px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:12px;margin-bottom:12px;outline:none;font-family:inherit}
-.pdf-box input[type=date]:focus{border-color:#6366f1}
 .pdf-btns{display:flex;gap:8px;margin-top:4px}
-
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(10px);background:#1f2937;color:#fff;padding:8px 18px;border-radius:20px;font-size:12px;opacity:0;transition:all .3s;pointer-events:none;z-index:9999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .loading{padding:14px;text-align:center;color:#9ca3af;font-size:11px}
@@ -214,8 +168,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <body>
 <div class="loader" id="loader"><div class="spinner"></div><div id="loader-msg">Loading...</div></div>
 <div class="overlay" id="overlay" onclick="closeDTPop()"></div>
-
-<!-- Day type popover -->
 <div class="dt-pop" id="dt-pop">
   <h3>Mark this day as:</h3>
   <div id="dt-opts"></div>
@@ -224,15 +176,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="btn-confirm" onclick="confirmDT()">Confirm</button>
   </div>
 </div>
-
-<!-- PDF modal -->
 <div class="pdf-modal" id="pdf-modal">
   <div class="pdf-box">
     <h3>Export Work Log PDF</h3>
-    <label>From date</label>
-    <input type="date" id="pdf-from">
-    <label>To date</label>
-    <input type="date" id="pdf-to">
+    <label>From date</label><input type="date" id="pdf-from">
+    <label>To date</label><input type="date" id="pdf-to">
     <div class="pdf-btns">
       <button class="btn-cancel" onclick="closePDF()">Cancel</button>
       <button class="btn-confirm" onclick="generatePDF()">Export PDF</button>
@@ -245,7 +193,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="hdr-top">
     <h1>Daily Task Tracker</h1>
     <div class="hdr-right">
-      <div class="streak" id="streak" style="display:none"></div>
+      <div class="streak" id="streak"></div>
       <div class="badges">
         <div class="bp" id="sync-b">⚡ Local</div>
         <div class="bp" id="save-b">Idle</div>
@@ -275,33 +223,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- Weekly Summary -->
 <div class="sec">
-  <div class="sec-hdr" onclick="toggleSec('sum')">
+  <div class="sec-hdr" id="hdr-sum" onclick="toggleSec('sum')">
     <span class="chev" id="chev-sum">&#9654;</span>
     <span>Weekly summary</span>
-    <div class="stabs" onclick="e=>e.stopPropagation()">
+    <div class="stabs">
       <button class="stab active" onclick="event.stopPropagation();setSumTab('week',this)">This week</button>
       <button class="stab" onclick="event.stopPropagation();setSumTab('lastweek',this)">Last week</button>
       <button class="stab" onclick="event.stopPropagation();setSumTab('month',this)">This month</button>
     </div>
   </div>
-  <div class="sec-body" id="body-sum"><table class="sum-table" id="sum-table"></table></div>
+  <div class="sec-body" id="body-sum"><div class="sum-wrap"><table class="sum-table" id="sum-table"></table></div></div>
 </div>
 
 <!-- Meetings -->
 <div class="sec">
-  <div class="sec-hdr" onclick="toggleSec('meet')">
-    <span class="chev" id="chev-meet">&#9654;</span>
+  <div class="sec-hdr" id="hdr-meet" onclick="toggleSec('meet')">
+    <span class="chev open" id="chev-meet">&#9654;</span>
     <span>Meetings</span>
     <button class="hdr-btn" onclick="event.stopPropagation();loadMeetings()">Fetch</button>
   </div>
-  <div class="sec-body" id="body-meet"><div class="empty">Tap Fetch to load meetings</div></div>
+  <div class="sec-body open" id="body-meet"><div class="empty">Tap Fetch to load meetings</div></div>
 </div>
 
 <!-- Tasks -->
 <div class="sec">
-  <div class="sec-hdr no-collapse">
+  <div class="sec-hdr nc">
     <span>Today's tasks</span>
-    <button class="hdr-btn" onclick="undoDelete()" title="Undo">↩ Undo</button>
+    <button class="hdr-btn" onclick="undoDelete()">↩ Undo</button>
   </div>
   <div class="filter-row">
     <input class="srch" id="srch" placeholder="Search tasks..." oninput="renderTasks()">
@@ -341,21 +289,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- History -->
 <div class="sec">
-  <div class="sec-hdr" onclick="toggleSec('hist')">
-    <span class="chev" id="chev-hist">&#9654;</span>
+  <div class="sec-hdr" id="hdr-hist" onclick="toggleSec('hist')">
+    <span class="chev open" id="chev-hist">&#9654;</span>
     <span>Recent history</span>
     <button class="hdr-btn" onclick="event.stopPropagation();loadHistory()">Refresh</button>
   </div>
-  <div class="sec-body" id="body-hist">
+  <div class="sec-body open" id="body-hist">
     <div class="hist-tabs">
-      <button class="htab active" id="htab-0" onclick="setHistTab(0)">Yesterday</button>
-      <button class="htab" id="htab-1" onclick="setHistTab(1)">Day before</button>
+      <button class="htab active" id="htab-0" onclick="setHistTab(0)">Last workday</button>
+      <button class="htab" id="htab-1" onclick="setHistTab(1)">2nd last workday</button>
     </div>
-    <div id="hist-list"><div class="empty">No history found.</div></div>
+    <div id="hist-list"><div class="empty">Loading...</div></div>
   </div>
 </div>
 
-<!-- Bottom -->
 <div class="bottom">
   <div class="store-note" id="store-note">Connected to Apps Script</div>
   <button class="btn-insert" id="btn-insert" onclick="insertToSheet()">Insert in Google Sheet</button>
@@ -381,9 +328,10 @@ const TODAY = new Date();
 let SEL = new Date(TODAY);
 let TASKS=[], MEETS=[], HIST=[], HMETA=[];
 let FILTER={s:'all',p:'all'};
-let SUMTAB='week', SUMOPEN=false;
-let HIST_TAB=0;
-let HIST_DAYS=[];
+let SUMTAB='week';
+let HIST_TAB=0, HIST_DAYS=[];
+// Fix #1: SEC_STATE mirrors actual DOM state (meet & hist open by default)
+let SEC_STATE={sum:false, meet:true, hist:true};
 let saveTimer=null, syncQ=[], isSyncing=false;
 let DB={};
 let pendingDT=null;
@@ -395,7 +343,6 @@ function parseD(s){const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d
 function fmtShort(d){const mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return d.getDate()+'-'+mo[d.getMonth()]+'-'+d.getFullYear()}
 function fmtLong(d){return d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
 function fmtTime(s){if(!s)return'';try{return new Date(s).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true})}catch{return''}}
-function fmtTS(){const n=new Date();return n.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+' at '+n.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true})}
 function isToday(){return isoD(SEL)===isoD(TODAY)}
 function isWE(d){const w=d.getDay();return w===0||w===6}
 function toB64(s){return btoa(unescape(encodeURIComponent(s)))}
@@ -417,8 +364,7 @@ function pc(p){return p==='P0'?'p0':p==='P1'?'p1':'p2'}
 function sc(s){return{['Not Started']:'st-ns',['In Progress']:'st-ip',Done:'st-dn',['Next Day']:'st-nd',Blocked:'st-bl'}[s]||'st-ns'}
 function inferType(n){const s=(n||'').toLowerCase();if(/review|design|ui|ux/.test(s))return'Design Review';if(/discussion|call|sync|connect|sprint/.test(s))return'Discussion';if(/update|jira|log|report/.test(s))return'Reporting';if(/research|funds|optimization/.test(s))return'Research';if(/ppt|presentation|deck/.test(s))return'Presentation';if(/gke|deploy|infra|prod/.test(s))return'Engineering';return'Task'}
 
-// ── Collapsible sections ────────────────────────────────────────────────────
-const SEC_STATE={sum:false,meet:true,hist:false};
+// ── Fix #1: Collapsible sections — SEC_STATE is authoritative ──────────────
 function toggleSec(id){
   SEC_STATE[id]=!SEC_STATE[id];
   document.getElementById('body-'+id).classList.toggle('open',SEC_STATE[id]);
@@ -426,16 +372,13 @@ function toggleSec(id){
   if(id==='sum'&&SEC_STATE[id])renderSummary();
   if(id==='hist'&&SEC_STATE[id])loadHistory();
 }
-// Open meetings by default
-window.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('body-meet').classList.add('open');
-  document.getElementById('chev-meet').classList.add('open');
-});
 
-// ── Day Type ────────────────────────────────────────────────────────────────
+// ── Day Type — Fix #18: localStorage preferred over AS for dayType ──────────
 function getDT(iso){
-  if(DB[iso]?.dayType)return DB[iso].dayType;
+  // localStorage first (local intent takes priority)
   try{const r=localStorage.getItem('dt_'+iso);if(r)return r}catch{}
+  // Fall back to DB (cross-device sync from AS)
+  if(DB[iso]?.dayType)return DB[iso].dayType;
   return isWE(parseD(iso))?'weekend':'workday';
 }
 function saveDT(iso,t){
@@ -470,7 +413,6 @@ async function confirmDT(){
   if(next==='leave'){TASKS=[];renderTasks();toast('Marked as leave — tasks carry to next working day.')}
   else if(prev==='leave'){TASKS=[];MEETS=[];const loaded=await loadForDate(iso);if(!loaded)await carryForward();renderTasks();updateCarryBadge();toast('Day marked: '+dtLabel(next))}
   else toast('Day marked: '+dtLabel(next));
-  // Push day type to AS for cross-device sync
   try{await asPost('save',{iso,tasks:TASKS,meetings:MEETS,dayType:next});setSync('synced')}
   catch(e){setSync('offline');queueSync(iso,{tasks:TASKS,meetings:MEETS,dayType:next})}
 }
@@ -487,7 +429,6 @@ async function asPost(action,body={}){
   if(!r.ok)throw new Error('HTTP '+r.status);
   return r.json();
 }
-const asGet=asCall;
 
 // ── Load all ────────────────────────────────────────────────────────────────
 async function loadAll(){
@@ -495,12 +436,27 @@ async function loadAll(){
   catch(e){console.warn('loadAll:',e.message)}
   setSync('offline');return false;
 }
-
 async function loadForDate(iso){
+  // 1. DB cache (from AS loadAll)
   const c=DB[iso];
   if(c&&Array.isArray(c.tasks)&&c.tasks.length){TASKS=clone(c.tasks);MEETS=clone(c.meetings||[]);return true}
-  try{const r=await asCall('load',{iso});if(r.ok&&r.data?.tasks?.length){DB[iso]=r.data;TASKS=clone(r.data.tasks);MEETS=clone(r.data.meetings||[]);return true}}catch(e){console.warn(e)}
-  try{const res=await window.storage.get('dtt_'+iso);if(res){const d=JSON.parse(fromB64(res.value));if(d.tasks?.length){TASKS=clone(d.tasks);MEETS=clone(d.meetings||[]);return true}}}catch{}
+  // 2. localStorage (instant, no network)
+  const cached=LS.get('dtt_'+iso);
+  if(cached){
+    try{
+      const d=JSON.parse(fromB64(cached.value));
+      if(Array.isArray(d.tasks)&&d.tasks.length){TASKS=clone(d.tasks);MEETS=clone(d.meetings||[]);return true}
+    }catch{}
+  }
+  // 3. Direct AS call as last resort
+  try{
+    const r=await asCall('load',{iso});
+    if(r.ok&&r.data?.tasks?.length){
+      DB[iso]=r.data;TASKS=clone(r.data.tasks);MEETS=clone(r.data.meetings||[]);
+      LS.set('dtt_'+iso,toB64(JSON.stringify(r.data)));
+      return true;
+    }
+  }catch(e){console.warn(e)}
   return false;
 }
 
@@ -508,17 +464,33 @@ async function loadForDate(iso){
 function scheduleSave(){setSave('saving');clearTimeout(saveTimer);saveTimer=setTimeout(()=>doSave(isoD(SEL)),1500)}
 async function doSave(iso){
   const payload={tasks:TASKS,meetings:MEETS,dayType:getDT(iso)};
-  try{await window.storage.set('dtt_'+iso,toB64(JSON.stringify(payload)));setSave('saved')}catch{}
+  // Save to localStorage instantly
+  LS.set('dtt_'+iso, toB64(JSON.stringify(payload)));
+  setSave('saved');
   DB[iso]={...payload};
+  // Sync to AS in background
   setSync('syncing');
-  try{const r=await asPost('save',{iso,...payload});if(r.ok)setSync('synced');else{setSync('offline');queueSync(iso,payload)}}
-  catch(e){setSync('offline');queueSync(iso,payload)}
+  try{
+    const r=await asPost('save',{iso,...payload});
+    if(r.ok)setSync('synced');
+    else{setSync('offline');queueSync(iso,payload)}
+  }catch(e){setSync('offline');queueSync(iso,payload)}
 }
 function queueSync(iso,p){syncQ=syncQ.filter(q=>q.iso!==iso);syncQ.push({iso,payload:p})}
+// Fix #9: flushQ — avoid mutating array while iterating
 async function flushQ(){
-  if(!syncQ.length||isSyncing)return;isSyncing=true;
-  for(const item of[...syncQ]){try{const r=await asPost('save',{iso:item.iso,...item.payload});if(r.ok)syncQ=syncQ.filter(q=>q.iso!==item.iso)}catch{break}}
-  isSyncing=false;if(!syncQ.length)setSync('synced');
+  if(!syncQ.length||isSyncing)return;
+  isSyncing=true;
+  const items=[...syncQ];
+  for(const item of items){
+    try{
+      const r=await asPost('save',{iso:item.iso,...item.payload});
+      if(r.ok)syncQ=syncQ.filter(q=>q.iso!==item.iso);
+      else break;
+    }catch{break}
+  }
+  isSyncing=false;
+  if(!syncQ.length)setSync('synced');
 }
 
 // ── Carry forward ───────────────────────────────────────────────────────────
@@ -530,39 +502,50 @@ async function carryForward(){
   const prevISO=isoD(prev);
   let prevTasks=DB[prevISO]?.tasks||[];
   if(!prevTasks.length){try{const res=await window.storage.get('dtt_'+prevISO);if(res){const d=JSON.parse(fromB64(res.value));prevTasks=d.tasks||[]}}catch{}}
+  // Carry: Not Started, In Progress, Next Day — status-based, not carriedFrom
   const carry=prevTasks.filter(t=>['Not Started','In Progress','Next Day'].includes(t.status));
   if(!carry.length)return;
   if(getDT(curISO)==='leave'){
     const nw=nextWork(SEL),niso=isoD(nw);
     const ex=DB[niso]||{tasks:[],meetings:[]};
     const names=new Set((ex.tasks||[]).map(t=>t.name));
-    const toAdd=carry.filter(t=>!names.has(t.name)).map(t=>({...t,status:t.status==='Next Day'?'Not Started':t.status,showCmt:false,carriedFrom:prevISO,flickerOff:false,carryCount:(t.carryCount||0)+1}));
+    const toAdd=carry.filter(t=>!names.has(t.name)).map(t=>({
+      name:t.name,priority:t.priority,
+      status:t.status==='Next Day'?'Not Started':t.status,
+      comment:t.comment||'',showCmt:false,isNew:false,
+      carriedFrom:prevISO,flickerOff:false,carryCount:(t.carryCount||0)+1
+    }));
     ex.tasks=[...toAdd,...(ex.tasks||[])];
-    DB[niso]=ex;
-    await doSave(niso);
-    return;
+    DB[niso]=ex;await doSave(niso);return;
   }
-  TASKS=carry.map(t=>({...t,status:t.status==='Next Day'?'Not Started':t.status,showCmt:false,carriedFrom:prevISO,flickerOff:t.status==='Next Day',carryCount:(t.carryCount||0)+1}));
+  // Clean task objects — don't spread old ones to avoid stale flags
+  TASKS=carry.map(t=>({
+    name:t.name,priority:t.priority,
+    status:t.status==='Next Day'?'Not Started':t.status,
+    comment:t.comment||'',showCmt:false,isNew:false,
+    carriedFrom:prevISO,flickerOff:t.status==='Next Day',
+    carryCount:(t.carryCount||0)+1,
+    manualPriority:t.manualPriority||false
+  }));
   toast(TASKS.length+' task(s) carried from '+fmtShort(prev));
   scheduleSave();
 }
 
-// ── Carry badge ─────────────────────────────────────────────────────────────
 async function updateCarryBadge(){
   const badge=document.getElementById('carry-badge');
   if(TASKS.length>0){badge.classList.remove('show');return}
   const prev=prevWork(SEL);
-  let pt=DB[isoD(prev)]?.tasks||[];
+  const pt=DB[isoD(prev)]?.tasks||[];
   const cnt=pt.filter(t=>['Not Started','In Progress','Next Day'].includes(t.status)).length;
-  if(cnt>0){badge.textContent=cnt+' pending';badge.classList.add('show')}else badge.classList.remove('show');
+  if(cnt>0){badge.textContent=cnt+' pending';badge.classList.add('show')}
+  else badge.classList.remove('show');
 }
 
-// ── Streak ──────────────────────────────────────────────────────────────────
+// ── Fix #6: Streak — called after data is loaded ────────────────────────────
 function calcStreak(){
   let streak=0,d=new Date(TODAY);
   for(let i=0;i<60;i++){
     const iso=isoD(d);
-    const dt=getDT(iso);
     if(!isWork(iso)){d.setDate(d.getDate()-1);continue}
     const data=DB[iso];
     if(!data||!data.tasks||!data.tasks.length)break;
@@ -572,13 +555,15 @@ function calcStreak(){
     d.setDate(d.getDate()-1);
   }
   const el=document.getElementById('streak');
-  if(streak>0){el.style.display='inline-block';el.textContent='🔥 '+streak+' day streak';el.className='streak'+(streak>=5?' hot':'')}
+  if(streak>0){el.style.display='inline-block';el.textContent='🔥 '+streak+(streak===1?' day':' days');el.className='streak'+(streak>=5?' hot':'')}
   else el.style.display='none';
 }
 
 // ── Date change ─────────────────────────────────────────────────────────────
 async function onDateChange(iso){
-  await doSave(isoD(SEL));
+  // Fix #5: save current SEL before switching
+  const prevISO=isoD(SEL);
+  await doSave(prevISO);
   SEL=parseD(iso);TASKS=[];MEETS=[];
   document.getElementById('date-inp').value=iso;
   document.getElementById('date-lbl').textContent=fmtLong(SEL);
@@ -587,7 +572,8 @@ async function onDateChange(iso){
   const loaded=await loadForDate(iso);
   if(!loaded)await carryForward();
   renderTasks();updateCarryBadge();
-  if(SEC_STATE.hist)loadHistory();
+  // Fix #3: always reload history on date change
+  if(SEC_STATE.hist)await loadHistory();
   flushQ();
 }
 
@@ -601,8 +587,8 @@ function updateBanner(){
 
 // ── Meetings ────────────────────────────────────────────────────────────────
 async function loadMeetings(){
+  if(!SEC_STATE.meet)toggleSec('meet');
   const list=document.getElementById('body-meet');
-  if(!SEC_STATE.meet){toggleSec('meet')}
   list.innerHTML='<div class="loading">Fetching calendar...</div>';
   try{
     const r=await asCall('getCalendar',{iso:isoD(SEL)});
@@ -633,25 +619,19 @@ function updateStats(){
 }
 
 // ── Summary ─────────────────────────────────────────────────────────────────
-function setSumTab(t,el){SUMTAB=t;document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(SUMOPEN||SEC_STATE.sum)renderSummary()}
+function setSumTab(t,el){SUMTAB=t;document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(SEC_STATE.sum)renderSummary()}
 async function renderSummary(){
   const tbl=document.getElementById('sum-table');
   tbl.innerHTML='<tr><th>Date</th><th>Day</th><th>Total</th><th>Done</th><th>Progress</th><th>Type</th></tr>';
-  const dates=getSumDates();
-  for(const iso of dates){
+  for(const iso of getSumDates()){
     let tasks=[];
     if(DB[iso]?.tasks?.length)tasks=DB[iso].tasks;
     else{try{const res=await window.storage.get('dtt_'+iso);if(res){const d=JSON.parse(fromB64(res.value));tasks=d.tasks||[]}}catch{}}
     const total=tasks.length,done=tasks.filter(t=>t.status==='Done').length,pct=total?Math.round(done/total*100):0;
-    const dt=getDT(iso),d=parseD(iso);
-    const dn=d.toLocaleDateString('en-IN',{weekday:'short'});
+    const dt=getDT(iso),d=parseD(iso),dn=d.toLocaleDateString('en-IN',{weekday:'short'});
     const dtB=dt==='leave'?'<span style="font-size:9px;background:#fee2e2;color:#991b1b;padding:1px 5px;border-radius:3px">Leave</span>':dt==='weekend-work'?'<span style="font-size:9px;background:#fef9c3;color:#854d0e;padding:1px 5px;border-radius:3px">Working</span>':dt==='weekend'?'<span style="font-size:9px;color:#9ca3af">Off</span>':'<span style="font-size:9px;color:#6b7280">Workday</span>';
     const dim=!total||dt==='leave'||dt==='weekend';
-    tbl.innerHTML+=`<tr style="${dim?'color:#9ca3af':''}">
-      <td>${fmtShort(d)}</td><td>${dn}</td>
-      <td>${total||'—'}</td><td>${total?done:'—'}</td>
-      <td>${total&&dt!=='leave'?`<div class="mini-bar"><div class="mini-fill" style="width:${pct}%"></div></div>${pct}%`:'—'}</td>
-      <td>${dtB}</td></tr>`;
+    tbl.innerHTML+=`<tr style="${dim?'color:#9ca3af':''}"><td>${fmtShort(d)}</td><td>${dn}</td><td>${total||'—'}</td><td>${total?done:'—'}</td><td>${total&&dt!=='leave'?`<div class="mini-bar"><div class="mini-fill" style="width:${pct}%"></div></div>${pct}%`:'—'}</td><td>${dtB}</td></tr>`;
   }
 }
 function getSumDates(){
@@ -684,7 +664,8 @@ function clearF(){
 
 // ── Render tasks ────────────────────────────────────────────────────────────
 function flickers(t){if(!t.carriedFrom)return false;if(t.flickerOff)return false;return t.status==='Not Started'||t.status==='In Progress'}
-function isEscalated(t){return t.carriedFrom&&(t.carryCount||0)>=3&&t.status!=='Done'&&t.status!=='Blocked'&&t.priority!=='P0'}
+// Fix #13: escalation only if priority was NOT manually set by user
+function isEscalated(t){return t.carriedFrom&&(t.carryCount||0)>=3&&t.status!=='Done'&&t.status!=='Blocked'&&t.priority!=='P0'&&!t.manualPriority}
 
 function sortedFiltered(){
   const q=document.getElementById('srch')?.value.trim().toLowerCase()||'';
@@ -714,24 +695,16 @@ function renderTasks(){
   const fresh=visible.filter(({t})=>!t.isNew&&!t.carriedFrom);
   let html='';
   html+=newT.map(({t,i})=>taskHTML(t,i)).join('');
-  if(carried.length){
-    if(newT.length)html+=`<div style="height:0.5px;background:#e5e7eb"></div>`;
-    html+=`<div class="carry-hdr">↩ Carried over</div>`;
-    html+=carried.map(({t,i})=>taskHTML(t,i)).join('');
-  }
-  if(fresh.length){
-    if(newT.length||carried.length)html+=`<div style="height:0.5px;background:#e5e7eb"></div>`;
-    html+=fresh.map(({t,i})=>taskHTML(t,i)).join('');
-  }
+  if(carried.length){if(newT.length)html+=`<div style="height:0.5px;background:#e5e7eb"></div>`;html+=`<div class="carry-hdr">↩ Carried over</div>`;html+=carried.map(({t,i})=>taskHTML(t,i)).join('')}
+  if(fresh.length){if(newT.length||carried.length)html+=`<div style="height:0.5px;background:#e5e7eb"></div>`;html+=fresh.map(({t,i})=>taskHTML(t,i)).join('')}
   list.innerHTML=html;
-  attachSwipe();
 }
 
 function taskHTML(t,i){
   const escalated=isEscalated(t);
-  const tip=t.carriedFrom?`title="Carried from ${t.carriedFrom}${t.carryCount>1?' ('+t.carryCount+' days)':''}"` :'';
+  const tip=t.carriedFrom?`title="Carried from ${t.carriedFrom}${(t.carryCount||0)>1?' ('+t.carryCount+' days)':''}"` :'';
   return`<div>
-  <div class="task-row" data-idx="${i}">
+  <div class="task-row">
     <div class="flicker${flickers(t)?'':' off'}" ${tip}></div>
     <div class="dd">
       <button class="badge ${pc(escalated?'P0':t.priority)}" onclick="toggleDD('pm${i}')">${escalated?'P0':t.priority}</button>
@@ -739,15 +712,15 @@ function taskHTML(t,i){
     </div>
     <div class="tname${t.status==='Done'?' done':''}">${esc(t.name)}
       ${t.isNew?'<span class="tag-new">NEW</span>':''}
-      ${escalated?'<span class="tag-p0warn">⚠ 3+ days</span>':''}
+      ${escalated?'<span class="tag-warn">⚠ 3+ days</span>':''}
     </div>
     <div class="dd">
       <button class="sp ${sc(t.status)}" onclick="toggleDD('sm${i}')">${t.status}</button>
       <div class="ddm" id="sm${i}">${['Not Started','In Progress','Done','Next Day','Blocked'].map(s=>`<div onclick="setStatus(${i},'${s}');closeDD()">${s}</div>`).join('')}</div>
     </div>
-    <div class="cmt-btn-wrap">
+    <div class="cmt-wrap">
       <button class="icon-btn cmt-btn${t.comment?' has-cmt':''}" onclick="toggleCmt(${i})">${t.comment?'💬':'💭'}</button>
-      ${t.comment?`<div class="cmt-tooltip">${esc(t.comment)}</div>`:''}
+      ${t.comment?`<div class="cmt-tip">${esc(t.comment)}</div>`:''}
     </div>
     <button class="icon-btn del-btn" onclick="delTask(${i})">✕</button>
   </div>
@@ -756,26 +729,8 @@ function taskHTML(t,i){
   </div></div>`;
 }
 
-// ── Swipe to cycle status ───────────────────────────────────────────────────
-const STATUS_CYCLE=['Not Started','In Progress','Done','Next Day','Blocked'];
-function attachSwipe(){
-  document.querySelectorAll('.task-row').forEach(row=>{
-    let sx=0;
-    row.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-    row.addEventListener('touchend',e=>{
-      const dx=e.changedTouches[0].clientX-sx;
-      if(Math.abs(dx)<50)return;
-      const i=parseInt(row.dataset.idx);
-      if(isNaN(i))return;
-      const cur=STATUS_CYCLE.indexOf(TASKS[i].status);
-      const next=dx>0?(cur+1)%STATUS_CYCLE.length:(cur-1+STATUS_CYCLE.length)%STATUS_CYCLE.length;
-      setStatus(i,STATUS_CYCLE[next]);
-      toast('→ '+STATUS_CYCLE[next]);
-    },{passive:true});
-  });
-}
-
-function setPri(i,p){TASKS[i].priority=p;renderTasks();scheduleSave()}
+// Fix #13: setPri sets manualPriority flag
+function setPri(i,p){TASKS[i].priority=p;TASKS[i].manualPriority=true;renderTasks();scheduleSave()}
 function setStatus(i,s){
   TASKS[i].status=s;
   if(s==='Done'||s==='Blocked'){TASKS[i].carriedFrom=null;TASKS[i].flickerOff=false;TASKS[i].carryCount=0}
@@ -791,32 +746,37 @@ function saveCmt(i){TASKS[i].showCmt=false;updCmt(i);document.getElementById('ca
 function addTask(){
   const inp=document.getElementById('new-inp'),pri=document.getElementById('new-pri').value,name=inp.value.trim();
   if(!name)return;
-  TASKS.unshift({name,priority:pri,status:'Not Started',comment:'',showCmt:false,isNew:true,carriedFrom:null,flickerOff:false,carryCount:0});
+  TASKS.unshift({name,priority:pri,status:'Not Started',comment:'',showCmt:false,isNew:true,carriedFrom:null,flickerOff:false,carryCount:0,manualPriority:false});
   inp.value='';renderTasks();scheduleSave();
 }
 
-// ── History ─────────────────────────────────────────────────────────────────
+// ── History — Fix #7 labels, #8 setHistTab loads data ──────────────────────
+// Fix #8: setHistTab ensures data is loaded
 function setHistTab(idx){
   HIST_TAB=idx;
   document.getElementById('htab-0').classList.toggle('active',idx===0);
   document.getElementById('htab-1').classList.toggle('active',idx===1);
-  renderHistTab();
+  if(HIST_DAYS.length)renderHistTab();
+  else loadHistory();
 }
 
 async function loadHistory(){
   HIST_DAYS=[];HIST=[];HMETA=[];
-  // Find last 2 working days
+  const list=document.getElementById('hist-list');
+  list.innerHTML='<div class="loading">Loading...</div>';
   let d=new Date(SEL);
   for(let found=0,checked=0;found<2&&checked<14;checked++){
     d=prevWork(d);
     const iso=isoD(d);
     let tasks=[];
-    if(DB[iso]?.tasks?.length)tasks=DB[iso].tasks;
+    if(DB[iso]?.tasks?.length)tasks=clone(DB[iso].tasks);
     else{try{const res=await window.storage.get('dtt_'+iso);if(res){const dd=JSON.parse(fromB64(res.value));tasks=dd.tasks||[]}}catch{}}
-    HIST_DAYS.push({label:found===0?'Yesterday':'Day before',iso,tasks,dt:getDT(iso)});
+    // Fix #7: clear labels — "Last workday" and "2nd last workday"
+    const label=found===0?'Last workday':'2nd last workday';
+    HIST_DAYS.push({label,iso,tasks,dt:getDT(iso)});
     found++;
   }
-  // Update tab labels
+  // Update tab labels with actual dates
   if(HIST_DAYS[0])document.getElementById('htab-0').textContent=HIST_DAYS[0].label+' ('+fmtShort(parseD(HIST_DAYS[0].iso))+')';
   if(HIST_DAYS[1])document.getElementById('htab-1').textContent=HIST_DAYS[1].label+' ('+fmtShort(parseD(HIST_DAYS[1].iso))+')';
   renderHistTab();
@@ -826,7 +786,8 @@ function renderHistTab(){
   const list=document.getElementById('hist-list');
   const day=HIST_DAYS[HIST_TAB];
   HIST=[];HMETA=[];
-  if(!day||!day.tasks.length){list.innerHTML='<div class="empty">No tasks found.</div>';return}
+  if(!day){list.innerHTML='<div class="empty">No history found.</div>';return}
+  if(!day.tasks.length){list.innerHTML='<div class="empty">No tasks on this day.</div>';return}
   HIST=[...day.tasks];
   HIST.forEach(()=>HMETA.push({iso:day.iso}));
   const dtB=day.dt==='leave'?'<span style="font-size:9px;background:#fee2e2;color:#991b1b;padding:1px 5px;border-radius:3px;margin-left:4px">Leave</span>':day.dt==='weekend-work'?'<span style="font-size:9px;background:#fef9c3;color:#854d0e;padding:1px 5px;border-radius:3px;margin-left:4px">Working</span>':'';
@@ -847,8 +808,7 @@ async function setHistStatus(i,ns){
   const old=HIST[i].status;HIST[i].status=ns;
   const pill=document.getElementById('hp-'+i),nameEl=document.getElementById('hn-'+i);
   if(pill){pill.className=`sp ${sc(ns)}`;pill.textContent=ns}
-  if(nameEl)nameEl.className=ns==='Done'?'tname done':'tname';
-  nameEl.style.flex='1';nameEl.style.fontSize='12px';
+  if(nameEl){nameEl.className='tname'+(ns==='Done'?' done':'');nameEl.style.flex='1';nameEl.style.fontSize='12px'}
   try{
     const meta=HMETA[i];if(!meta)return;
     const iso=meta.iso;
@@ -861,11 +821,11 @@ async function setHistStatus(i,ns){
 function addFromHist(i){
   const t=HIST[i];if(!t)return;
   if(TASKS.find(x=>x.name===t.name)){toast('Already in today\'s list!');return}
-  TASKS.unshift({...t,isNew:true,showCmt:false,carriedFrom:null,flickerOff:false,carryCount:0});
+  TASKS.unshift({name:t.name,priority:t.priority,status:'Not Started',comment:t.comment||'',showCmt:false,isNew:true,carriedFrom:null,flickerOff:false,carryCount:0,manualPriority:false});
   renderTasks();scheduleSave();toast('Task added');
 }
 
-// ── Insert to sheet ──────────────────────────────────────────────────────────
+// ── Fix #17: insertToSheet updates DB cache ─────────────────────────────────
 async function insertToSheet(){
   const btn=document.getElementById('btn-insert');
   btn.disabled=true;btn.textContent='Inserting...';
@@ -873,16 +833,17 @@ async function insertToSheet(){
   try{
     const r=await asPost('insertSheet',{iso,tasks:TASKS,meetings:MEETS,dayType:getDT(iso)});
     if(r.ok){
-      const ts=fmtTS();
+      // Update DB cache so summary reflects latest data
+      DB[iso]={...DB[iso],tasks:TASKS,meetings:MEETS,dayType:getDT(iso)};
       document.getElementById('store-note').textContent='Last inserted: '+fmtShort(SEL)+' at '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
-      if(r.sheetUrl){document.getElementById('sheets-link').href=r.sheetUrl;document.getElementById('sheets-link').style.display='flex'}
+      if(r.sheetUrl)document.getElementById('sheets-link').href=r.sheetUrl;
       toast('✓ Inserted in Work Log 2026!');
     }else toast('⚠ Insert failed: '+(r.error||'Unknown'));
   }catch(e){toast('⚠ '+e.message)}
   finally{btn.disabled=false;btn.textContent='Insert in Google Sheet'}
 }
 
-// ── PDF Export ───────────────────────────────────────────────────────────────
+// ── Fix #15: PDF — use blob URL instead of window.open to avoid popup block ─
 function openPDF(){
   const today=isoD(TODAY);
   const mon=new Date(TODAY);mon.setDate(mon.getDate()-((mon.getDay()+6)%7));
@@ -897,119 +858,120 @@ async function generatePDF(){
   const to=document.getElementById('pdf-to').value;
   if(!from||!to){toast('Please select both dates');return}
   closePDF();toast('Generating PDF...');
-
-  // Collect data for date range
   const dates=[];
-  let d=parseD(from);
-  const end=parseD(to);
-  while(d<=end){dates.push(isoD(d));d.setDate(d.getDate()+1)}
-
+  let d=parseD(from);const end=parseD(to);
+  while(d<=end){dates.push(isoD(d));d=new Date(d);d.setDate(d.getDate()+1)}
   const dayData=[];
   for(const iso of dates){
     let tasks=[];
     if(DB[iso]?.tasks?.length)tasks=DB[iso].tasks;
-    else{try{const res=await window.storage.get('dtt_'+iso);if(res){const dd=JSON.parse(fromB64(res.value));tasks=dd.tasks||[]}}catch{}}
+    else{
+      const cached=LS.get('dtt_'+iso);
+      if(cached){try{const dd=JSON.parse(fromB64(cached.value));tasks=dd.tasks||[]}catch{}}
+    }
     dayData.push({iso,tasks,dt:getDT(iso)});
   }
-
   const totalTasks=dayData.reduce((a,d)=>a+d.tasks.length,0);
   const doneTasks=dayData.reduce((a,d)=>a+d.tasks.filter(t=>t.status==='Done').length,0);
   const pct=totalTasks?Math.round(doneTasks/totalTasks*100):0;
-
-  const statusIcon=s=>s==='Done'?'✅':s==='In Progress'?'🔄':s==='Blocked'?'🚫':s==='Next Day'?'⏭':'⬜';
-
-  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8">
-  <style>
+  const sIcon=s=>s==='Done'?'✅':s==='In Progress'?'🔄':s==='Blocked'?'🚫':s==='Next Day'?'⏭':'⬜';
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;padding:40px;max-width:800px;margin:0 auto}
     .cover{border-bottom:3px solid #6366f1;padding-bottom:20px;margin-bottom:28px}
     .cover h1{font-size:24px;font-weight:700;color:#6366f1;margin-bottom:4px}
-    .cover .name{font-size:16px;font-weight:600;margin-bottom:2px}
-    .cover .desig{font-size:13px;color:#6b7280;margin-bottom:12px}
-    .cover .range{font-size:13px;color:#6b7280}
-    .summary-box{background:#f8f9fa;border-radius:10px;padding:16px 20px;margin-bottom:28px;display:flex;gap:32px;align-items:center}
-    .sum-stat .num{font-size:28px;font-weight:700;color:#6366f1}
-    .sum-stat .lbl{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.05em}
-    .prog-bar{flex:1;height:10px;background:#e5e7eb;border-radius:5px;overflow:hidden}
-    .prog-fill{height:100%;background:linear-gradient(90deg,#6366f1,#10b981);border-radius:5px}
-    .day-section{margin-bottom:24px;break-inside:avoid}
-    .day-title{font-size:14px;font-weight:700;color:#374151;padding:8px 0;border-bottom:1px solid #e5e7eb;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
-    .task-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:0.5px solid #f3f4f6}
-    .task-row:last-child{border-bottom:none}
-    .task-name{flex:1;font-size:12px}
-    .task-name.done{text-decoration:line-through;color:#9ca3af}
-    .pri{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px}
+    .name{font-size:16px;font-weight:600;margin-bottom:2px}.desig{font-size:13px;color:#6b7280;margin-bottom:12px}.range{font-size:13px;color:#6b7280}
+    .sum-box{background:#f8f9fa;border-radius:10px;padding:16px 20px;margin-bottom:28px;display:flex;gap:32px;align-items:center}
+    .sstat .num{font-size:28px;font-weight:700;color:#6366f1}.sstat .lbl{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.05em}
+    .pbar{flex:1;height:10px;background:#e5e7eb;border-radius:5px;overflow:hidden}.pfill{height:100%;background:linear-gradient(90deg,#6366f1,#10b981);border-radius:5px}
+    .day{margin-bottom:24px;page-break-inside:avoid}
+    .day-title{font-size:13px;font-weight:700;color:#374151;padding:8px 0;border-bottom:1px solid #e5e7eb;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+    .trow{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:0.5px solid #f3f4f6}
+    .trow:last-child{border-bottom:none}
+    .tname{flex:1;font-size:12px}.tname.done{text-decoration:line-through;color:#9ca3af}
+    .pri{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;white-space:nowrap}
     .p0{background:#fee2e2;color:#991b1b}.p1{background:#fef3c7;color:#92400e}.p2{background:#dbeafe;color:#1e40af}
-    .status{font-size:10px;color:#6b7280;white-space:nowrap}
-    .comment{font-size:10px;color:#9ca3af;font-style:italic;margin-top:2px}
-    .leave-day{color:#9ca3af;font-style:italic;font-size:12px;padding:6px 0}
+    .stat{font-size:10px;color:#6b7280;white-space:nowrap}.cmt{font-size:10px;color:#9ca3af;font-style:italic;margin-top:2px}
+    .no-tasks{color:#9ca3af;font-style:italic;font-size:12px;padding:6px 0}
     .footer{margin-top:40px;padding-top:16px;border-top:1px solid #e5e7eb;font-size:11px;color:#9ca3af;text-align:center}
-    @media print{body{padding:20px}.summary-box{break-inside:avoid}}
-  </style>
-  </head><body>
-  <div class="cover">
-    <h1>Work Log Report</h1>
-    <div class="name">${UNAME}</div>
-    <div class="desig">${UDESIG}</div>
-    <div class="range">${fmtShort(parseD(from))} — ${fmtShort(parseD(to))}</div>
-  </div>
-  <div class="summary-box">
-    <div class="sum-stat"><div class="num">${totalTasks}</div><div class="lbl">Total tasks</div></div>
-    <div class="sum-stat"><div class="num">${doneTasks}</div><div class="lbl">Done</div></div>
-    <div class="sum-stat"><div class="num">${pct}%</div><div class="lbl">Completion</div></div>
-    <div style="flex:1"><div style="font-size:11px;color:#6b7280;margin-bottom:6px">Overall progress</div><div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div></div>
+    @media print{body{padding:20px}}
+  </style></head><body>
+  <div class="cover"><h1>Work Log Report</h1><div class="name">${UNAME}</div><div class="desig">${UDESIG}</div><div class="range">${fmtShort(parseD(from))} — ${fmtShort(parseD(to))}</div></div>
+  <div class="sum-box">
+    <div class="sstat"><div class="num">${totalTasks}</div><div class="lbl">Total tasks</div></div>
+    <div class="sstat"><div class="num">${doneTasks}</div><div class="lbl">Done</div></div>
+    <div class="sstat"><div class="num">${pct}%</div><div class="lbl">Completion</div></div>
+    <div style="flex:1"><div style="font-size:11px;color:#6b7280;margin-bottom:6px">Overall progress</div><div class="pbar"><div class="pfill" style="width:${pct}%"></div></div></div>
   </div>
   ${dayData.map(day=>{
-    const d=parseD(day.iso);
-    const dayName=d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
     if(day.dt==='weekend'&&!day.tasks.length)return'';
-    return`<div class="day-section">
-      <div class="day-title">${dayName}${day.dt==='leave'?' — On Leave':day.dt==='weekend-work'?' — Working Weekend':''}</div>
-      ${day.dt==='leave'?'<div class="leave-day">On leave this day</div>':
-        !day.tasks.length?'<div class="leave-day">No tasks logged</div>':
-        day.tasks.map(t=>`<div class="task-row">
-          <span>${statusIcon(t.status)}</span>
-          <span class="pri ${t.priority==='P0'?'p0':t.priority==='P1'?'p1':'p2'}">${t.priority}</span>
-          <div style="flex:1"><div class="task-name${t.status==='Done'?' done':''}">${esc(t.name)}</div>${t.comment?`<div class="comment">${esc(t.comment)}</div>`:''}</div>
-          <span class="status">${t.status}</span>
-        </div>`).join('')}
+    const d=parseD(day.iso);
+    const dn=d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    return`<div class="day"><div class="day-title">${dn}${day.dt==='leave'?' — On Leave':day.dt==='weekend-work'?' — Working Weekend':''}</div>
+    ${day.dt==='leave'?'<div class="no-tasks">On leave this day</div>':!day.tasks.length?'<div class="no-tasks">No tasks logged</div>':
+    day.tasks.map(t=>`<div class="trow"><span>${sIcon(t.status)}</span><span class="pri ${t.priority==='P0'?'p0':t.priority==='P1'?'p1':'p2'}">${t.priority}</span><div style="flex:1"><div class="tname${t.status==='Done'?' done':''}">${esc(t.name)}</div>${t.comment?`<div class="cmt">${esc(t.comment)}</div>`:''}</div><span class="stat">${t.status}</span></div>`).join('')}
     </div>`;
   }).join('')}
   <div class="footer">Generated by Daily Task Tracker · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}</div>
   </body></html>`;
 
-  const win=window.open('','_blank');
-  win.document.write(html);
-  win.document.close();
-  setTimeout(()=>win.print(),500);
+  // Fix #15: use blob URL — avoids popup blocker
+  const blob=new Blob([html],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.target='_blank';a.rel='noopener';
+  document.body.appendChild(a);a.click();
+  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url)},1000);
+  toast('PDF opened — use browser Print (Ctrl+P) to save as PDF');
 }
 
 // ── Init ─────────────────────────────────────────────────────────────────────
 async function init(){
-  showLoader('Connecting to Apps Script...');
   const iso=isoD(TODAY);
   document.getElementById('date-inp').value=iso;
   document.getElementById('date-lbl').textContent=fmtLong(TODAY);
   updateDTUI();updateBanner();
 
+  // Step 1: Try localStorage instantly — no network
+  let hasLocal=false;
+  const cached=LS.get('dtt_'+iso);
+  if(cached){
+    try{
+      const d=JSON.parse(fromB64(cached.value));
+      if(Array.isArray(d.tasks)&&d.tasks.length){
+        TASKS=clone(d.tasks);MEETS=clone(d.meetings||[]);
+        hasLocal=true;
+      }
+    }catch{}
+  }
+
+  // Step 2: If local data exists — show immediately, no loader
+  if(hasLocal){
+    hideLoader();
+    renderTasks();updateCarryBadge();calcStreak();
+    await loadHistory();
+    // Sync AS silently in background
+    setSync('syncing');
+    loadAll().then(()=>setSync('synced')).catch(()=>setSync('offline'));
+    return;
+  }
+
+  // Step 3: No local cache — wait for AS (first time or cleared storage)
   showLoader('Loading your data...');
   await loadAll();
-
-  showLoader('Preparing tasks...');
   const loaded=await loadForDate(iso);
   if(!loaded)await carryForward();
-
   hideLoader();
-  renderTasks();
-  updateCarryBadge();
-  calcStreak();
+  renderTasks();updateCarryBadge();calcStreak();
+  await loadHistory();
   flushQ();
 }
+
 init();
 
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('service-worker.js')
     .then(()=>console.log('SW registered'))
-    .catch(e=>console.warn('SW failed:',e));
+    .catch(e=>console.warn('SW:',e));
 }
 </script>
 </body>
