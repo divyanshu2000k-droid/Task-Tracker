@@ -418,16 +418,32 @@ async function confirmDT(){
 }
 
 // ── AS calls ────────────────────────────────────────────────────────────────
-async function asCall(action,params={}){
+async function asCall(action, params={}){
   const qs=Object.entries({token:TOKEN,action,...params}).map(([k,v])=>`${k}=${encodeURIComponent(typeof v==='object'?JSON.stringify(v):v)}`).join('&');
-  const r=await fetch(AS_URL+'?'+qs);
-  if(!r.ok)throw new Error('HTTP '+r.status);
-  return r.json();
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),8000); // 8 sec timeout
+  try{
+    const r=await fetch(AS_URL+'?'+qs,{signal:controller.signal});
+    clearTimeout(timeout);
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return r.json();
+  }catch(e){
+    clearTimeout(timeout);
+    throw e;
+  }
 }
 async function asPost(action,body={}){
-  const r=await fetch(AS_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({token:TOKEN,action,...body})});
-  if(!r.ok)throw new Error('HTTP '+r.status);
-  return r.json();
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),8000);
+  try{
+    const r=await fetch(AS_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({token:TOKEN,action,...body}),signal:controller.signal});
+    clearTimeout(timeout);
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return r.json();
+  }catch(e){
+    clearTimeout(timeout);
+    throw e;
+  }
 }
 
 // ── Load all ────────────────────────────────────────────────────────────────
@@ -957,9 +973,16 @@ async function init(){
 
   // Step 3: No local cache — wait for AS (first time or cleared storage)
   showLoader('Loading your data...');
-  await loadAll();
-  const loaded=await loadForDate(iso);
-  if(!loaded)await carryForward();
+  try{
+    await loadAll();
+    const loaded=await loadForDate(iso);
+    if(!loaded)await carryForward();
+  }catch(e){
+    console.warn('AS failed on init:',e.message);
+    setSync('offline');
+    // Still try carry forward from whatever DB has
+    if(!TASKS.length)await carryForward();
+  }
   hideLoader();
   renderTasks();updateCarryBadge();calcStreak();
   await loadHistory();
